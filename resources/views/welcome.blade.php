@@ -89,6 +89,8 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                @component('component.who')
+                @endcomponent
             </div>
         </div>
     </body>
