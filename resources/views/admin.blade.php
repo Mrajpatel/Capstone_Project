@@ -16,6 +16,7 @@
 
                     @component('component.who')
                     @endcomponent
+                    <a href="{{ route('tech.index') }}" class="btn btn-info">View Tech</a>
                 </div>
             </div>
         </div>
