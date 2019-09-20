@@ -37,3 +37,4 @@ Route::prefix('admin')->group(function(){
 Route::resource('tech', 'TechController');
 Route::resource('loanedTech', 'LoanedTechController');
 Route::resource('users', 'UserController');
+Route::resource('userTech', 'UserTechController');

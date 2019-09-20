@@ -53,7 +53,7 @@
 
             <div class="form-group">
                 <label for="user_fine"><b>User Fine</b><span></span></label>
-                <input 
+                <input type="number"
                     placeholder="Enter User Fine"
                     id="user_fine"
                     name="fine"

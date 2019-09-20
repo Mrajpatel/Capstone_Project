@@ -44,7 +44,7 @@
 
             <div class="form-group">
                 <label for="tech_type"><b>User Fine</b><span></span></label>
-                <input 
+                <input type="number"
                     placeholder="Enter User Fine"
                     id="user_fine"
                     name="fine"

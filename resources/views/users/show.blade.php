@@ -13,7 +13,7 @@
         <h1 style="color:red; font-weight:bold">{{ $singleUserData->name }} </h1>
         <p class="lead" style="color:black"><b>ID:</b> {{ $singleUserData->id}}</p>
         <p class="lead" style="color:black"><b>Email:</b> {{ $singleUserData->email}}</p>
-        <p class="lead" style="color:black"><b>Fine: </b> $ {{ $singleUserData->fine}}</p>
+        <p class="lead" style="color:black"><b>Fine ($): </b>  {{ $singleUserData->fine}}</p>
         <p class="lead" style="color:black"><b>Account Created At:</b> {{ $singleUserData->created_at}}</p>
         <p><a class="btn btn-success" href="/users" role="button">View All Users</a></p>
         
