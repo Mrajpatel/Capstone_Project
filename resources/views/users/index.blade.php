@@ -7,6 +7,7 @@
           
         </div>
         <div class="panel-body">
+        <a class="pull-right btn btn-success" href="/users/create">Create New User</a>
           <h1><b>List Of All Users</b></h1>
 
           <table class="table">

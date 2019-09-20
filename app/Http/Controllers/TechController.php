@@ -48,11 +48,11 @@ class TechController extends Controller
             ]);
             if($tech){
                 return redirect()->route('tech.show', ['tech' => $tech->id])
-                ->with('success', 'Tech date updated successfully');
+                ->with('success', 'Tech data created successfully');
             }
         
         
-        return back()->withInput()->with('errors', 'Error creating new company');
+        return back()->withInput()->with('errors', 'Error creating new tech');
     }
 
     /**

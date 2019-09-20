@@ -28,6 +28,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('users.create');
     }
 
     /**
@@ -39,6 +40,19 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+            
+        ]);
+        if($user){
+            return redirect()->route('users.show', ['singleUserData' => $user->id])
+            ->with('success', 'User data created successfully');
+        }
+    
+    
+    return back()->withInput()->with('errors', 'Error creating new User');
     }
 
     /**
