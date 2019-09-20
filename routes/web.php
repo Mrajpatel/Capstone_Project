@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('admin.logout');
 
 Route::prefix('admin')->group(function(){

@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.appAdmin')
 
 @section('content')
 <div class="col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">

@@ -101,7 +101,7 @@ class TechController extends Controller
 
         if($techUpdate){
             return redirect()->route('tech.show', ['tech' => $tech->id])
-            ->with('success', 'Tech date updated successfully');
+            ->with('success', 'Tech data updated successfully');
         }
 
         return back()->withInput();

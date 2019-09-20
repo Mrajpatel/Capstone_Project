@@ -15,6 +15,9 @@ class UserController extends Controller
     public function index()
     {
         //
+        $usersList = User::all();
+
+        return view('users.index', ['usersList' => $usersList]);
     }
 
     /**
@@ -47,6 +50,8 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
+        $singleUser = User::find($user->id);
+        return view('users.show', ['singleUserData' => $singleUser]);
     }
 
     /**
@@ -58,6 +63,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        $singleUserData = User::find($user->id);
+        return view('users.edit', ['singleUserData' => $singleUserData]);
     }
 
     /**
@@ -69,7 +76,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        // save data 
+        $userUpdate = User::where('id', $user->id)-> update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'fine' => $request->input('fine'),
+        ]);
+
+        if($userUpdate){
+            return redirect()->route('users.show', ['user' => $user->id])
+            ->with('success', 'User data updated successfully');
+        }
+
+        return back()->withInput()->with('error' , 'User data cannot be updated');
     }
 
     /**
@@ -80,6 +99,14 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        // delete user account
+        $findUser = User::find( $user->id);
+		if($findUser->delete()){
+            
+            //redirect
+            return redirect()->route('users.index')
+            ->with('success' , 'User deleted successfully');
+        }
+        return back()->withInput()->with('error' , 'User could not be deleted');
     }
 }
