@@ -11,7 +11,7 @@
             <li><a href="{{ route('home') }}">Dashboard</a>
             <li><a href="{{route('userTech.index')}}">View All Tech</a></li>
             <li><a href="#">Available Tech</a></li>
-            <li><a href="#">Personal Information</a></li>
+            <li><a href="{{route('editPersonalInformation.index')}}">Personal Information</a></li>
         </ul>
     </div>
 </nav>

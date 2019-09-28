@@ -85,10 +85,4 @@
     </footer>
 </div>
 
-
-
-
-
-
-
 @endsection

@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -64,7 +65,7 @@
                                         {{ csrf_field() }}
                                     </form>
                                 </li>
-                                <li><a>Personal Information</a></li>
+                                <li><a href="{{route('editPersonalInformation.index')}}">Personal Information</a></li>
                             </ul>
                         </li>
                         @endif
