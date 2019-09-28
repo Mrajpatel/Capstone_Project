@@ -27,7 +27,6 @@ class UserTechController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
