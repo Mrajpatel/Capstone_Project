@@ -20,6 +20,10 @@ class TechController extends Controller
         return view('tech.index', ['technologies' => $technologies]);
     }
 
+    public function searchTech(Request $request, Technologies $tech){
+        return view('tech.searchTech', ['technologies' => $tech]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

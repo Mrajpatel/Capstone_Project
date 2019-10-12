@@ -11,9 +11,22 @@
 |
 */
 
+use App\Http\Controllers\TechController;
+use Illuminate\Support\Facades\Input;
+use App\Technologies;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::any('/searchTech', function(){
+    $q = Input::get('q');
+    $technologies = Technologies::all();
+    return view('tech.searchTech', ['q' => $q, 'technologies' => $technologies]);
+    
+});
+
+//Route:: get('/searchTech', 'TechController@search')
 
 Auth::routes();
 
@@ -35,6 +48,7 @@ Route::prefix('admin')->group(function(){
     
 });
 Route::resource('tech', 'TechController');
+
 Route::resource('loanedTech', 'LoanedTechController');
 Route::resource('users', 'UserController');
 Route::resource('userTech', 'UserTechController');
