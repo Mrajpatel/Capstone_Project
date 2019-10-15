@@ -13,7 +13,7 @@
             <h2>
                 Results for: "{{$q}}"
             </h2>
-
+            <p><a class="btn btn-success" href="{{ route('tech.index') }}" role="button">Clear Filter</a></p>
             <table class="table">
                 <thead>
                     <tr>

@@ -20,7 +20,8 @@ class TechController extends Controller
         return view('tech.index', ['technologies' => $technologies]);
     }
 
-    public function searchTech(Request $request, Technologies $tech){
+    public function searchTech(Request $request, Technologies $tech)
+    {
         return view('tech.searchTech', ['technologies' => $tech]);
     }
 
@@ -44,18 +45,18 @@ class TechController extends Controller
     public function store(Request $request)
     {
         //
-            $tech = Technologies::create([
-                'code' => $request->input('barcode'),
-                'description' => $request->input('description'),
-                'condition' => $request->input('condition'),
-                'tech_type' => $request->input('techType')
-            ]);
-            if($tech){
-                return redirect()->route('tech.show', ['tech' => $tech->id])
+        $tech = Technologies::create([
+            'code' => $request->input('barcode'),
+            'description' => $request->input('description'),
+            'condition' => $request->input('condition'),
+            'tech_type' => $request->input('techType')
+        ]);
+        if ($tech) {
+            return redirect()->route('tech.show', ['tech' => $tech->id])
                 ->with('success', 'Tech data created successfully');
-            }
-        
-        
+        }
+
+
         return back()->withInput()->with('errors', 'Error creating new tech');
     }
 
@@ -96,16 +97,16 @@ class TechController extends Controller
     public function update(Request $request, Technologies $tech)
     {
         // save data 
-        $techUpdate = Technologies::where('id', $tech->id)-> update([
+        $techUpdate = Technologies::where('id', $tech->id)->update([
             'code' => $request->input('barcode'),
             'description' => $request->input('description'),
             'condition' => $request->input('condition'),
             'tech_type' => $request->input('techType'),
         ]);
 
-        if($techUpdate){
+        if ($techUpdate) {
             return redirect()->route('tech.show', ['tech' => $tech->id])
-            ->with('success', 'Tech data updated successfully');
+                ->with('success', 'Tech data updated successfully');
         }
 
         return back()->withInput();
@@ -120,14 +121,13 @@ class TechController extends Controller
     public function destroy(Technologies $tech)
     {
         //dd($tech);
-        $findTech = Technologies::find( $tech->id);
-		if($findTech->delete()){
-            
+        $findTech = Technologies::find($tech->id);
+        if ($findTech->delete()) {
+
             //redirect
             return redirect()->route('tech.index')
-            ->with('success' , 'Tech Data deleted successfully');
+                ->with('success', 'Tech Data deleted successfully');
         }
-        return back()->withInput()->with('error' , 'Tech Data could not be deleted');
-
+        return back()->withInput()->with('error', 'Tech Data could not be deleted');
     }
 }

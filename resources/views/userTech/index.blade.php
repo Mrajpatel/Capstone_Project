@@ -37,7 +37,21 @@
                         <td><b>{{ $tech->tech_type}}</b></td>
                         <td><b>{{ $tech->condition}}</b></td>
                         <td><b>{{ $tech->description}}</b></td>
-                        <td><b><a type="button" class="btn btn-success btn-sm" href="/userTech/{{ $tech->id }}/edit" >Select</a></b></td>
+                        <td>
+                            <b>
+                                <form method="post" action="/selectTechUser">
+                                    {{ csrf_field() }}
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="q" value="{{$tech->id}}" style="display:none;">
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                Select
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </b>
+                        </td>
                     </tr>
 
                     @endforeach
