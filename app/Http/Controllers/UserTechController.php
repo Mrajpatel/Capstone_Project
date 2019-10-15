@@ -42,18 +42,14 @@ class UserTechController extends Controller
 
     public function show(Technologies $tech)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Technologies $tech)
     {
         //
+        $tech = Technologies::find($tech->id);
+        return view('userTech.show', ['technologies' => $tech]);
     }
 
     /**

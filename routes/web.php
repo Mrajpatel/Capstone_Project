@@ -34,6 +34,20 @@ Route::any('/searchUser', function(){
     
 });
 
+Route::any('/searchTechByUser', function(){
+    $q = Input::get('q');
+    $technologies = Technologies::all();
+    return view('userTech.searchTechByUser', ['q' => $q, 'technologies' => $technologies]);
+    
+});
+
+// Route::any('/selectTech', function(){
+//     $q = Input::get('q');
+//     $technologies = Technologies::all();
+//     return view('userTech.searchTechByUser', ['q' => $q, 'technologies' => $technologies]);
+    
+// });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
