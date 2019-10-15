@@ -10,11 +10,9 @@
         <div class="panel-body">
             <a class="pull-right btn btn-success" href="/tech/create">Add New Tech</a><br><br>
 
-            <h1>
-                <h1>
-                    Results for: "{{$q}}"
-                </h1>
-            </h1>
+            <h2>
+                Results for: "{{$q}}"
+            </h2>
 
             <table class="table">
                 <thead>
@@ -25,17 +23,38 @@
                     </tr>
                 </thead>
                 <tbody id="allTech">
-                    @foreach($technologies as $tech)
+                    <?php
+                    $count  = 0;
+                    foreach ($technologies as $tech) {
+                        if ($tech->tech_type == $q or $tech->id == $q or $tech->code == $q) {
+                            $count = $count + 1;
+                        }
+                    }
+                    ?>
 
+                    @if($count == 0)
+                    <h3>No Results found</h3>
+                    @foreach($technologies as $tech)
+                    <tr>
+                        <th><b>{{ $tech->id}}</b></th>
+                        <td scope="row"><a href="/tech/{{ $tech->id }}">{{ $tech->code}}</a></td>
+                        <td><b>{{ $tech->tech_type}}</b></td>
+                    </tr>
+                    @endforeach
+
+                    @else
+                    @foreach($technologies as $tech)
                     @if($tech->tech_type == $q or $tech->id == $q or $tech->code == $q)
+
                     <tr>
                         <th><b>{{ $tech->id}}</b></th>
                         <td scope="row"><a href="/tech/{{ $tech->id }}">{{ $tech->code}}</a></td>
                         <td><b>{{ $tech->tech_type}}</b></td>
                     </tr>
                     @endif
-
                     @endforeach
+                    @endif
+
                 </tbody>
             </table>
         </div>

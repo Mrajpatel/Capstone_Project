@@ -14,6 +14,7 @@
 use App\Http\Controllers\TechController;
 use Illuminate\Support\Facades\Input;
 use App\Technologies;
+use App\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,7 +27,12 @@ Route::any('/searchTech', function(){
     
 });
 
-//Route:: get('/searchTech', 'TechController@search')
+Route::any('/searchUser', function(){
+    $q = Input::get('q');
+    $users = User::all();
+    return view('users.searchUser', ['q' => $q, 'users' => $users]);
+    
+});
 
 Auth::routes();
 

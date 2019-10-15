@@ -21,7 +21,9 @@ class CreateTechnologiesTable extends Migration
             $table->string('condition');
             $table->timestamps();
             $table->string('tech_type');
-            
+            $table->string('due_time')->default(""); 
+            $table->boolean('loaned')->default(false);
+                      
             
         });
     }
