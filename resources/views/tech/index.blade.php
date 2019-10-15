@@ -19,20 +19,21 @@
       <form method="post" action="/searchTech">
         {{ csrf_field() }}
         <div class="input-group">
-          <input type="text" class="form-control" name="q" placeholder="Search By ID"><span class="input-group-btn">
+          <input type="text" class="form-control" name="q" placeholder="Search By Tech Type/ID/Barcode"><span class="input-group-btn">
             <button type="submit" class="btn btn-default">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </span>
         </div>
       </form>
-      
+
 
       <h1><b>Available Tech</b></h1>
 
       <table class="table">
         <thead>
           <tr>
+            <th scope="col">ID</th>
             <th scope="col">Barcode_Number</th>
             <th scope="col">Tech_Type</th>
           </tr>
@@ -41,7 +42,8 @@
           @foreach($technologies as $tech)
 
           <tr>
-            <th scope="row"><a href="/tech/{{ $tech->id }}">{{ $tech->code}}</a></th>
+            <th><b>{{ $tech->id}}</b></th>
+            <td scope="row"><a href="/tech/{{ $tech->id }}">{{ $tech->code}}</a></td>
             <td><b>{{ $tech->tech_type}}</b></td>
           </tr>
 

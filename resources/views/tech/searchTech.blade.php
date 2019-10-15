@@ -8,29 +8,29 @@
 
         </div>
         <div class="panel-body">
-            <!-- <a class="pull-right btn btn-success" href="/tech/create">Add New Tech</a><br><br> -->
+            <a class="pull-right btn btn-success" href="/tech/create">Add New Tech</a><br><br>
 
             <h1>
                 <h1>
-                    @if($q == "ok")
-                    {{$q}}
-                    @endif
+                    Results for: "{{$q}}"
                 </h1>
             </h1>
 
             <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col">ID</th>
                         <th scope="col">Barcode_Number</th>
                         <th scope="col">Tech_Type</th>
                     </tr>
                 </thead>
                 <tbody id="allTech">
                     @foreach($technologies as $tech)
-                    
-                    @if($tech->tech_type == $q)
+
+                    @if($tech->tech_type == $q or $tech->id == $q or $tech->code == $q)
                     <tr>
-                        <th scope="row"><a href="/tech/{{ $tech->id }}">{{ $tech->code}}</a></th>
+                        <th><b>{{ $tech->id}}</b></th>
+                        <td scope="row"><a href="/tech/{{ $tech->id }}">{{ $tech->code}}</a></td>
                         <td><b>{{ $tech->tech_type}}</b></td>
                     </tr>
                     @endif
