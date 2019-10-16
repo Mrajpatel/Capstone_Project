@@ -21,7 +21,19 @@
     @endif
     @endforeach
 
-    <p><a class="btn btn-info" href="/loanOut" role="button" value="{{$tech->id}}">Loan-Out</a></p>
+    <p>
+        <form method="post" action="/loanOut">
+            {{ csrf_field() }}
+            <div class="input-group">
+                <input type="text" class="form-control" name="q" value="{{$q}}" style="display:none;">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        Loan-Out
+                    </button>
+                </span>
+            </div>
+        </form>
+    </p>
     <footer class="footer">
         <p>© 2019 Tech-Manager, Inc.</p>
     </footer>

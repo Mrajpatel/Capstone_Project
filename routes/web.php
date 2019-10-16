@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Input;
 use App\Technologies;
-use App\LoanedTech;
+use App\Loanouts;
 use App\User;
 
 Route::get('/', function () {
@@ -39,19 +39,27 @@ Route::any('/selectTechUser', function () {
 });
 
 Route::any('/loanOut', function () {
-    // $userId = Auth::id();
-    // $tech = LoanedTech::create([
-    //     'user_id' => $userId,
-    //     // 'tech_id' => ,
-    //     // 'due_time' =>
-    // ]);
-    // if ($tech) {
-    //     return redirect()->route('userTech.index', ['tech' => $tech->id])
-    //         ->with('success', 'Tech data created successfully');
-    // }
+    $userId = Auth::id();
+    $q = Input::get('q');
+    $due_time = date("H:i:s", strtotime('+1 hours'));
+    $tech = Loanouts::create([
+        'user_id' => $userId,
+        'tech_id' => $q,
+        'due_time' => $due_time,   
+    ]);
+
+    $techUpdate = Technologies::where('id', $q)->update([
+        'due_time' => $due_time,
+        'loaned' => true,
+    ]);
+
+    if ($tech) {
+        return redirect()->route('userTech.index', ['tech' => $tech->id])
+            ->with('success', 'Tech selected. Please visit Dashboard for return timing.');
+    }
 
 
-    return back()->withInput()->with('errors', 'Error creating new tech');
+    return back()->withInput()->with('errors', 'Error selecting tech');
 });
 
 Auth::routes();

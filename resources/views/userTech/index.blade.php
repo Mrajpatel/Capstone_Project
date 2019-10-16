@@ -37,6 +37,8 @@
                         <td><b>{{ $tech->tech_type}}</b></td>
                         <td><b>{{ $tech->condition}}</b></td>
                         <td><b>{{ $tech->description}}</b></td>
+
+                        @if($tech->loaned != true)
                         <td>
                             <b>
                                 <form method="post" action="/selectTechUser">
@@ -52,6 +54,24 @@
                                 </form>
                             </b>
                         </td>
+                        @else
+                        <td>
+                            <b>
+                                <form method="post" action="/selectTechUser">
+                                    {{ csrf_field() }}
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="q" value="{{$tech->id}}" style="display:none;">
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-default btn-sm" disabled>
+                                                <b>Loaned-Out</b>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </b>
+                        </td>
+                        @endif
+
                     </tr>
 
                     @endforeach
