@@ -8,19 +8,22 @@
     <div class="masthead">
         <h3 class="text-muted" style="color:black; font-weight:bold">Tech Information</h3>
     </div>
+    <?php $count  = 0; ?>
     @foreach($technologies as $tech)
     @if($tech->id == $q)
+    <?php $count = $count + 1; ?>
     <div class="">
         <h1 style="color:red; font-weight:bold">{{ $tech->code }}_{{ $tech->tech_type}} </h1>
         <p class="lead" style="color:black"><b>Description:</b> {{ $tech->description}}</p>
         <p class="lead" style="color:black"><b>Barcode:</b> {{ $tech->code}}</p>
         <p class="lead" style="color:black"><b>condition:</b> {{ $tech->condition}}</p>
         <p class="lead" style="color:black"><b>Type:</b> {{ $tech->tech_type}}</p>
-        <p><a class="btn btn-info" href="{{route('userTech.index')}}" role="button">Back</a></p>
+        <p><a class="btn btn-info" href="{{route('userTech.index')}}" role="button">Return</a></p>
     </div>
     @endif
     @endforeach
 
+    @if($count != 0)
     <p>
         <form method="post" action="/loanOut">
             {{ csrf_field() }}
@@ -34,6 +37,10 @@
             </div>
         </form>
     </p>
+    @else
+    <h1>No results found.</h1>
+    <p><a class="btn btn-info" href="{{route('userTech.index')}}" role="button">Return</a></p>
+    @endif
     <footer class="footer">
         <p>© 2019 Tech-Manager, Inc.</p>
     </footer>

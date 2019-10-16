@@ -17,6 +17,7 @@ use App\Loanouts;
 use App\User;
 
 Route::get('/', function () {
+    $loanoutInfo = Loanouts::all();
     return view('welcome');
 });
 

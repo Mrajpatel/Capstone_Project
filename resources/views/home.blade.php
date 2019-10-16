@@ -13,9 +13,30 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <?php
+                        $count = 0;
+                    ?>
+                    
+                    @foreach($loanoutInfo as $tech)
+                    
+                    @if($tech->user_id == Auth::id())
+                    <?php
+                        $count = $count + 1;
+                    ?>
+                    <b><p class="text-success">Loaned Tech ID: {{$tech->tech_id}}</p>
+                    <p class="text-danger">Due Time: {{$tech->due_time}}</p><br></b>
+                    @endif
+                    
+                    @endforeach
 
-                    @component('component.who')
-                    @endcomponent
+                    @if($count == 0)
+                        <p>You have not loaned out anything Yet!</p>
+                    @endif
+
+                    <!-- @component('component.who')
+                    @endcomponent -->
+
+                    
                 </div>
             </div>
         </div>

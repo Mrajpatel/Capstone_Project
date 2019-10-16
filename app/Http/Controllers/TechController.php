@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Loanouts;
 use App\Technologies;
 use Illuminate\Http\Request;
 
@@ -97,11 +98,27 @@ class TechController extends Controller
     public function update(Request $request, Technologies $tech)
     {
         // save data 
+        $response = $request->input('techLoan');
+        $loaned = 0;
+        $techDelete = null;
+        if($response == "True"){
+            $loaned = 1;
+        }else{
+            $loaned = 0;
+            $due_time = "";
+            $findTech = Loanouts::where('tech_id', $tech->id);
+            if ($findTech->delete()) {}
+        }
+
+
+
         $techUpdate = Technologies::where('id', $tech->id)->update([
             'code' => $request->input('barcode'),
             'description' => $request->input('description'),
             'condition' => $request->input('condition'),
             'tech_type' => $request->input('techType'),
+            'loaned' => $loaned,
+            'due_time' => $due_time,
         ]);
 
         if ($techUpdate) {

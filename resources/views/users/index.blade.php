@@ -12,7 +12,7 @@
       <form method="post" action="/searchUser">
         {{ csrf_field() }}
         <div class="input-group">
-          <input type="text" class="form-control" name="q" placeholder="Search By Name/ID"><span class="input-group-btn">
+          <input type="text" class="form-control" name="q" placeholder="Search By Name"><span class="input-group-btn">
             <button type="submit" class="btn btn-default">
               <span class="glyphicon glyphicon-search"></span>
             </button>

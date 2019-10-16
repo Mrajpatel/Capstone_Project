@@ -70,6 +70,18 @@
             </div>
 
             <div class="form-group">
+                <label for="tech_type"><b>Loan-out</b><span class="required">*</span></label>
+                
+                <div class="radio">
+                <label><input type="radio" name="techLoan" >True</label>
+                </div>
+                <div class="radio">
+                <label><input type="radio" name="techLoan" checked>False</label>
+                </div>
+
+            </div>
+
+            <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit" />
                 <a class="btn btn-success" href="{{ URL::previous() }}" role="button">Back</a>
                 <a class="btn btn-success" href="/tech" role="button">View All Tech</a>

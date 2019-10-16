@@ -8,10 +8,10 @@
         </div>
         <div class="panel-body">
             <h1><b>All Tech Information</b></h1>
-            <form method="post" action="/searchTechByUser">
+            <form method="post" action="/selectTechUser">
                 {{ csrf_field() }}
                 <div class="input-group">
-                    <input type="text" class="form-control" name="q" placeholder="Search By Tech Type/ID/Barcode"><span class="input-group-btn">
+                    <input type="text" class="form-control" name="q" placeholder="Search By ID"><span class="input-group-btn">
                         <button type="submit" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
