@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Loanouts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,8 +18,9 @@ class UserController extends Controller
     {
         //
         $usersList = User::all();
+        $loanoutList = Loanouts::all();
 
-        return view('users.index', ['usersList' => $usersList]);
+        return view('users.index', ['usersList' => $usersList, 'loanoutList' => $loanoutList]);
     }
 
     /**

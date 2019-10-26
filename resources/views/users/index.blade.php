@@ -28,6 +28,7 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th score="col">Loanout Item-ID</th>
           </tr>
         </thead>
         <tbody>
@@ -37,6 +38,17 @@
             <th scope="row">{{ $user->id}}</th>
             <td><a href="/users/{{ $user->id }}"><b>{{ $user->name}}</b></a></td>
             <td><b>{{ $user->email}}</b></td>
+            <td>
+              <?php
+              $tech = "No Tech Loaned-out";
+              foreach($loanoutList as $list){
+                if($user->id == $list->user_id){
+                  $tech = $list->tech_id;
+                }
+              }
+              ?>
+              <b>{{ $tech }}</b>
+            </td>
           </tr>
 
           @endforeach

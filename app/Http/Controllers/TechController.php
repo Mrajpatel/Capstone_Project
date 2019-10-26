@@ -17,7 +17,6 @@ class TechController extends Controller
     {
         //
         $technologies = Technologies::all();
-
         return view('tech.index', ['technologies' => $technologies]);
     }
 

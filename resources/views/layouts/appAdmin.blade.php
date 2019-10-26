@@ -63,7 +63,6 @@
                     </div>
                     <ul class="nav navbar-nav">
                     <li><a href= "{{ route('admin.dashboard') }}">Dashboard</a>
-                    <!-- <li><a href="{{ route('tech.index') }}">View All Tech</a></li> -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tech
                         <span class="caret"></span></a>
@@ -79,10 +78,9 @@
                         <ul class="dropdown-menu">
                         <li><a href="{{ route('users.index') }}">View All Users</a></li>
                         <li><a href="{{ route('users.create') }}">Add New User</a></li>
-                        
                         </ul>
                     </li>
-                    <li><a href="#">Report</a></li>
+                    <li><a href="{{ route('report.index') }}">Report</a></li>
                     </ul>
                 </div>
             </nav>

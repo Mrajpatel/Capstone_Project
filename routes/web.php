@@ -84,6 +84,7 @@ Route::prefix('admin')->group(function () {
 Route::resource('tech', 'TechController');
 
 Route::resource('loanedTech', 'LoanedTechController');
+Route::resource('report', 'ReportsController');
 Route::resource('users', 'UserController');
 Route::resource('userTech', 'UserTechController');
 Route::resource('editPersonalInformation', 'EditUserInformationController');

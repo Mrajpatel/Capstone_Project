@@ -30,6 +30,7 @@
             <th scope="col">ID</th>
             <th scope="col">Barcode_Number</th>
             <th scope="col">Tech_Type</th>
+            <th scope="col">Loaned</th>
           </tr>
         </thead>
         <tbody id="allTech">
@@ -39,6 +40,16 @@
             <th><b>{{ $tech->id}}</b></th>
             <td scope="row"><a href="/tech/{{ $tech->id }}">{{ $tech->code}}</a></td>
             <td><b>{{ $tech->tech_type}}</b></td>
+            <td>
+                    <?php
+                    $tech_loan = $tech->loaned;
+                    $flag = "False";
+                    if ($tech_loan == 1) {
+                        $flag = "True";
+                    }
+                    ?>
+                    <b>{{ $flag }}</b>
+                </td>
           </tr>
 
           @endforeach
