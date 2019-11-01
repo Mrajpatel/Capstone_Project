@@ -45,6 +45,7 @@ class TechController extends Controller
     public function store(Request $request)
     {
         //
+        
         $tech = Technologies::create([
             'code' => $request->input('barcode'),
             'description' => $request->input('description'),
