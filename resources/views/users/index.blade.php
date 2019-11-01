@@ -8,7 +8,7 @@
     </div>
     <div class="panel-body">
       <a class="pull-right btn btn-success" href="/users/create">Create New User</a><br><br>
-      
+
       <form method="post" action="/searchUser">
         {{ csrf_field() }}
         <div class="input-group">
@@ -41,13 +41,34 @@
             <td>
               <?php
               $tech = "No Tech Loaned-out";
-              foreach($loanoutList as $list){
-                if($user->id == $list->user_id){
+              foreach ($loanoutList as $list) {
+                if ($user->id == $list->user_id) {
                   $tech = $list->tech_id;
                 }
               }
               ?>
               <b>{{ $tech }}</b>
+            </td>
+            <td>
+              <a style="color:white" href="/users/{{ $user->id }}/edit" class="btn btn-sm btn-info" role="button">
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+              </a>
+            </td>
+            <td>
+              <a class="btn btn-sm btn-danger" href="#" onclick="
+                  var result = confirm('Are you sure you wish to delete this User?');
+                      if( result ){
+                              event.preventDefault();
+                              document.getElementById('delete-form').submit();
+                      }
+                          ">
+                <span class="glyphicon glyphicon-remove"></span>
+              </a>
+
+              <form id="delete-form" action="{{ route('users.destroy',[$user->id]) }}" method="POST" style="display: none;">
+                <input type="hidden" name="_method" value="delete">
+                {{ csrf_field() }}
+              </form>
             </td>
           </tr>
 

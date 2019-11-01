@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +13,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
@@ -42,14 +46,13 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                            <li><a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                Logout
                             </a></li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -59,28 +62,30 @@
             <nav class="navbar navbar-default" style="background-color: lightblue;">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Tech Manager</a>
+                        <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
+                            <span class="glyphicon glyphicon-home"></span> Tech Manager
+                        </a>
                     </div>
                     <ul class="nav navbar-nav">
-                    <li><a href= "{{ route('admin.dashboard') }}">Dashboard</a>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tech
-                        <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                        <li><a href="{{ route('tech.index') }}">View All Tech</a></li>
-                        <li><a href="{{ route('tech.create') }}">Add New Tech</a></li>
-                        <li><a href="#">Page 1-3</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users
-                        <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                        <li><a href="{{ route('users.index') }}">View All Users</a></li>
-                        <li><a href="{{ route('users.create') }}">Add New User</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ route('report.index') }}">Report</a></li>
+                        <li><a id="test" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tech
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('tech.index') }}">View All Tech</a></li>
+                                <li><a href="{{ route('tech.create') }}">Add New Tech</a></li>
+                                <li><a href="#">Page 1-3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('users.index') }}">View All Users</a></li>
+                                <li><a href="{{ route('users.create') }}">Add New User</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ route('report.index') }}">Report</a></li>
                     </ul>
                 </div>
             </nav>
@@ -96,4 +101,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
+
 </html>

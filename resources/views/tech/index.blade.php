@@ -13,7 +13,8 @@
       <form method="post" action="/searchTech">
         {{ csrf_field() }}
         <div class="input-group">
-          <input type="text" class="form-control" name="q" placeholder="Search By Tech Type/ID/Barcode"><span class="input-group-btn">
+          <input id="searchTech" type="text" class="form-control" name="q" placeholder="Search By Tech Type/ID/Barcode"><span class="input-group-btn">
+            <div id="techList"></div>
             <button type="submit" class="btn btn-default">
               <span class="glyphicon glyphicon-search"></span>
             </button>
@@ -41,15 +42,36 @@
             <td scope="row"><a href="/tech/{{ $tech->id }}">{{ $tech->code}}</a></td>
             <td><b>{{ $tech->tech_type}}</b></td>
             <td>
-                    <?php
-                    $tech_loan = $tech->loaned;
-                    $flag = "False";
-                    if ($tech_loan == 1) {
-                        $flag = "True";
-                    }
-                    ?>
-                    <b>{{ $flag }}</b>
-                </td>
+              <?php
+              $tech_loan = $tech->loaned;
+              $flag = "False";
+              if ($tech_loan == 1) {
+                $flag = "True";
+              }
+              ?>
+              <b>{{ $flag }}</b>
+            </td>
+            <td>
+              <a style="color:white" href="/tech/{{ $tech->id }}/edit" class="btn btn-info btn-sm" role="button">
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+              </a>
+            </td>
+            <td>
+              <a class="btn btn-sm btn-danger" href="#" onclick="
+                  var result = confirm('Are you sure you wish to delete this Tech Data?');
+                      if( result ){
+                              event.preventDefault();
+                              document.getElementById('delete-form').submit();
+                      }
+                          ">
+                <span class="glyphicon glyphicon-remove"></span>
+              </a>
+
+              <form id="delete-form" action="{{ route('tech.destroy',[$tech->id]) }}" method="POST" style="display: none;">
+                <input type="hidden" name="_method" value="delete">
+                {{ csrf_field() }}
+              </form>
+            </td>
           </tr>
 
           @endforeach
