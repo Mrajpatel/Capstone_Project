@@ -103,7 +103,22 @@
 </body>
 <script>
     $(document).ready(function() {
-
+        $("#searchTech").keyup(function(){
+            var query = $(this).val();
+            if(query != ''){
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "/autocompleteTech",
+                    method: "POST",
+                    data: {query:query, _token:_token},
+                    success: function(data){
+                        $("#techList").faceIn();
+                        $("#techList").html(data)
+                    }
+                });
+                console.log(query);
+            }
+        });
     });
 </script>
 

@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\AutoCompleteTech;
 use Illuminate\Support\Facades\Input;
 use App\Technologies;
 use App\Loanouts;
@@ -20,6 +21,8 @@ Route::get('/', function () {
     $loanoutInfo = Loanouts::all();
     return view('welcome');
 });
+
+Route::post('/autocompleteTech', 'AutoCompleteTech@fetch');
 
 Route::any('/searchTech', function () {
     $q = Input::get('q');
