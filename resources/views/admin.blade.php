@@ -1,6 +1,10 @@
 @extends('layouts.appAdmin')
 
 @section('content')
+<!-- 
+    This page is accessed by admin.
+    ADMIN dashboard
+ -->
     <div class="container">
         
     <div class="row">

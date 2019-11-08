@@ -1,7 +1,13 @@
 @extends('navbar')
 
 @section('content1')
-<div class="container">
+
+<!-- 
+    This page is accessed by user
+    USER home page
+ -->
+
+ <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -33,10 +39,6 @@
                         <p>You have not loaned out anything Yet!</p>
                     @endif
 
-                    <!-- @component('component.who')
-                    @endcomponent -->
-
-                    
                 </div>
             </div>
         </div>
