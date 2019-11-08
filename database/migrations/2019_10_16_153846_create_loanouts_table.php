@@ -8,7 +8,7 @@ class CreateLoanoutsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * Table attributes and dependencies
      * @return void
      */
     public function up()

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- 
+    Extends the layout for user to display reset email format
+ -->
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

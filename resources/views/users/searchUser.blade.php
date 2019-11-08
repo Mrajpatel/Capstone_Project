@@ -1,6 +1,11 @@
 @extends('layouts.appAdmin')
 
 @section('content')
+<!-- 
+    This page is controlled by admin to search the specific user from the database
+    Specific routes are used to display information / connections
+    Routes information in @web.blade.php
+ -->
 <div class="col-md-8 col-lg-8 col-md-offset-1 col-lg-offset-2">
     <div class="panel panel-primary">
         <div class="panel-heading"><b>Users</b>

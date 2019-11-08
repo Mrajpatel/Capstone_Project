@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        // Returns all the user from the database to the view
         $usersList = User::all();
         $loanoutList = Loanouts::all();
 
@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // send/redirect to the create view 
         return view('users.create');
     }
 
@@ -42,7 +42,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Store the user from create view to the database     
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -50,11 +50,12 @@ class UserController extends Controller
             
         ]);
         if($user){
+            // Redirect with sucess message
             return redirect()->route('users.show', ['singleUserData' => $user->id])
             ->with('success', 'User data created successfully');
         }
     
-    
+    // Redirect with error message
     return back()->withInput()->with('errors', 'Error creating new User');
     }
 
@@ -66,7 +67,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        // find the user in database and show the user information in the show.blade view
         $singleUser = User::find($user->id);
         return view('users.show', ['singleUserData' => $singleUser]);
     }
@@ -79,7 +80,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        // find the user from the database and display information in edit.blade view
         $singleUserData = User::find($user->id);
         return view('users.edit', ['singleUserData' => $singleUserData]);
     }
@@ -93,7 +94,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // save data 
+        // save data into the database after update
         $userUpdate = User::where('id', $user->id)-> update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -101,10 +102,12 @@ class UserController extends Controller
         ]);
 
         if($userUpdate){
+            // Redirect with success message
             return redirect()->route('users.show', ['user' => $user->id])
             ->with('success', 'User data updated successfully');
         }
 
+        // Redirect with error message
         return back()->withInput()->with('error' , 'User data cannot be updated');
     }
 
@@ -120,10 +123,12 @@ class UserController extends Controller
         $findUser = User::find( $user->id);
 		if($findUser->delete()){
             
-            //redirect
+            //redirect with success message
             return redirect()->route('users.index')
             ->with('success' , 'User deleted successfully');
         }
+
+        // redirect with error message
         return back()->withInput()->with('error' , 'User could not be deleted');
     }
 }

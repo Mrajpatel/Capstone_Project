@@ -2,6 +2,11 @@
 
 @section('content')
 
+<!-- 
+    This page is controlled by admin to edit specific user in the database
+    Specific routes are used to display information/connections 
+    Routes information in @web.blade.php
+ -->
 
 <div class="container">
 

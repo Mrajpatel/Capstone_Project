@@ -1,7 +1,9 @@
 @extends('navbar')
 
 @section('content1')
-
+<!-- 
+    Page for user to edit personal information
+ -->
 <div class="container">
 
 

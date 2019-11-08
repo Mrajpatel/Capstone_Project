@@ -1,6 +1,13 @@
 @extends('navbar')
 
 @section('content1')
+
+<!-- 
+    This page is controlled by user to view all the tech from the database
+    Specific routes are used to display information 
+    Routes information in @web.blade.php
+ -->
+
 <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
     <div class="panel panel-primary">
         <div class="panel-heading"><b>Tech Information</b>

@@ -2,6 +2,11 @@
 
 @section('content')
 
+<!-- 
+    This page is controlled by admin to show the specific tech from the database
+    Specific routes are used to display information 
+    Routes information in @web.blade.php
+ -->
 
 <div class="container">
 
@@ -44,8 +49,7 @@
 
         </b>
 
-
-        <!--</b><a style="color:black" href="#" class="btn btn-default" role="button">Add Tech</a></b>-->
+        </b><a style="color:black" href="#" class="btn btn-default" role="button">Add New Tech</a></b>
     </div>
 
 
@@ -54,11 +58,4 @@
         <p>© 2019 Tech-Manager, Inc.</p>
     </footer>
 </div>
-
-
-
-
-
-
-
 @endsection

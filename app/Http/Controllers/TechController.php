@@ -15,13 +15,19 @@ class TechController extends Controller
      */
     public function index()
     {
-        //
+        // Returns all the tech from the database to the admin view
         $technologies = Technologies::all();
         return view('tech.index', ['technologies' => $technologies]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function searchTech(Request $request, Technologies $tech)
     {
+        // Returning all tech from the database
         return view('tech.searchTech', ['technologies' => $tech]);
     }
 
@@ -32,7 +38,7 @@ class TechController extends Controller
      */
     public function create()
     {
-        //
+        // send the create view 
         return view('tech.create');
     }
 
@@ -44,8 +50,7 @@ class TechController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        
+        // Store the tech from create view to the database        
         $tech = Technologies::create([
             'code' => $request->input('barcode'),
             'description' => $request->input('description'),
@@ -57,7 +62,7 @@ class TechController extends Controller
                 ->with('success', 'Tech data created successfully');
         }
 
-
+        // Redirect
         return back()->withInput()->with('errors', 'Error creating new tech');
     }
 
@@ -69,8 +74,7 @@ class TechController extends Controller
      */
     public function show(Technologies $tech)
     {
-        // Documentation given on Laravel Eloquent ORM
-        //$tech = Technologies::where('id', $tech->id);
+        // find the tech in database and show the tech information in the show.blade view
         $tech = Technologies::find($tech->id);
         return view('tech.show', ['technologies' => $tech]);
     }
@@ -83,7 +87,7 @@ class TechController extends Controller
      */
     public function edit(Technologies $tech)
     {
-        //
+        // find the tech from the database and display information in edit.blade view
         $tech = Technologies::find($tech->id);
         return view('tech.edit', ['technologies' => $tech]);
     }
@@ -97,7 +101,7 @@ class TechController extends Controller
      */
     public function update(Request $request, Technologies $tech)
     {
-        // save data 
+        // save data into the database after update
         $response = $request->input('techLoan');
         $loaned = 0;
         $techDelete = null;
@@ -110,8 +114,7 @@ class TechController extends Controller
             if ($findTech->delete()) {}
         }
 
-
-
+        // Find the tech from id and update the values
         $techUpdate = Technologies::where('id', $tech->id)->update([
             'code' => $request->input('barcode'),
             'description' => $request->input('description'),
@@ -126,6 +129,7 @@ class TechController extends Controller
                 ->with('success', 'Tech data updated successfully');
         }
 
+        // Redirect
         return back()->withInput();
     }
 
@@ -137,14 +141,15 @@ class TechController extends Controller
      */
     public function destroy(Technologies $tech)
     {
-        //dd($tech);
+        // Delete the tech from the database using tech id
         $findTech = Technologies::find($tech->id);
         if ($findTech->delete()) {
 
-            //redirect
+            // redirect with success message
             return redirect()->route('tech.index')
                 ->with('success', 'Tech Data deleted successfully');
         }
+        // redirect with error message
         return back()->withInput()->with('error', 'Tech Data could not be deleted');
     }
 }

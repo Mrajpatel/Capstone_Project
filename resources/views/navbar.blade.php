@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<!-- Nav bar for the user home page to route through different pages -->
 <nav class="navbar navbar-default" style="background-color: lightblue;">
     <div class="container-fluid">
         <div class="navbar-header">

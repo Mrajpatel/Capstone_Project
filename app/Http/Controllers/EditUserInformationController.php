@@ -19,7 +19,6 @@ class EditUserInformationController extends Controller
         $usersList = User::all();
         $user = Auth::user();
         return view('editPersonalInformation.index', ['user' => $user]);
-        //return view('editPersonalInformation.index');
     }
 
     /**
@@ -89,16 +88,5 @@ class EditUserInformationController extends Controller
         }
 
         return back()->withInput()->with('error' , 'User data cannot be updated');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

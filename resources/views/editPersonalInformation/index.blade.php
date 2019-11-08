@@ -1,7 +1,9 @@
 @extends('navbar')
 
 @section('content1')
-
+<!-- 
+    Display user personal infomation
+ -->
 <div class="">
     <h1 style="color:red; font-weight:bold">{{ $user->name }}</h1>
     <p class="lead" style="color:black"><b>ID:</b> {{ $user->id}}</p>

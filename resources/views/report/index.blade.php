@@ -1,7 +1,9 @@
 @extends('layouts.appAdmin')
 
 @section('content')
-
+<!-- 
+    This page is part of admin functionality to display all the tech, and it's criteria in table format
+ -->
 <div class="panel panel-body">
     <table class="table">
         <thead>

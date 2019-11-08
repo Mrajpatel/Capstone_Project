@@ -1,7 +1,11 @@
 @extends('layouts.appAdmin')
 
 @section('content')
-
+<!-- 
+    This page is controlled by admin to add, edit or remove and search the specific tech from the database
+    Specific routes are used to display information 
+    Routes information in @web.blade.php
+ -->
 <div class="col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
   <div class="panel panel-primary">
     <div class="panel-heading"><b>Tech Information</b>

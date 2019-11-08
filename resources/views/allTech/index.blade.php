@@ -1,6 +1,9 @@
 @extends('navbar')
 
 @section('content1')
+<!-- 
+    This page extends the navbar for the userview and displays information of all available tech in the database
+ -->
 <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
     <div class="panel panel-primary">
         <div class="panel-heading"><b>Tech Information</b>

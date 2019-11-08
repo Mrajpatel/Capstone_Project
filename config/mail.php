@@ -84,6 +84,7 @@ return [
     |
     */
 
+    // Created a fake user and password for the purpose of sending email -- information in .env file
     'username' => env('MAIL_USERNAME'),
 
     'password' => env('MAIL_PASSWORD'),

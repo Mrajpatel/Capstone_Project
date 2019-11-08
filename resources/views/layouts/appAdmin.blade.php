@@ -1,3 +1,10 @@
+<!-- 
+    This page uses HTML and Bootstrap to setup the home page view for the admin 
+    to view all the admin functionalities
+
+    Certain part of script uses include segments to get information from different page in application
+ -->
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 
@@ -58,6 +65,7 @@
             </div>
         </nav>
 
+        <!-- Contains navbar to route through different pages -->
         <div class="container">
             <nav class="navbar navbar-default" style="background-color: lightblue;">
                 <div class="container-fluid">

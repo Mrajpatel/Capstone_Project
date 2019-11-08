@@ -1,3 +1,10 @@
+<!-- 
+    This page uses HTML and Bootstrap to setup the home page view for the user 
+    to view all the user functionalities
+
+    Certain part of script uses include segments to get information from different page in application
+ -->
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 
@@ -76,7 +83,6 @@
         </nav>
 
         <div class="container">
-
 
             @include('partials.errors')
             @include('partials.success')

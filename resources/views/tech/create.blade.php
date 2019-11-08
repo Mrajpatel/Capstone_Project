@@ -2,7 +2,11 @@
 
 @section('content')
 
-
+<!-- 
+    This page is controlled by admin to add new tech in the database
+    Specific routes are used to display information 
+    Routes information in @web.blade.php
+ -->
 <div class="container">
 
 

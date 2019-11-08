@@ -24,7 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // return view('home');
         $loanoutInfo = Loanouts::all();
         return view('home', ['loanoutInfo' => $loanoutInfo]);
     }
