@@ -7,7 +7,7 @@
 
         </div>
         <div class="panel-body">
-            <h1><b>All Tech Information</b></h1>
+            <h1><b>Available Tech</b></h1>
             <form method="post" action="/selectTechUser">
                 {{ csrf_field() }}
                 <div class="input-group">

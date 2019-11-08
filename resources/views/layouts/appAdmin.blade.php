@@ -74,7 +74,6 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('tech.index') }}">View All Tech</a></li>
                                 <li><a href="{{ route('tech.create') }}">Add New Tech</a></li>
-                                <li><a href="#">Page 1-3</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -101,25 +100,5 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
-<script>
-    $(document).ready(function() {
-        $("#searchTech").keyup(function(){
-            var query = $(this).val();
-            if(query != ''){
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                    url: "/autocompleteTech",
-                    method: "POST",
-                    data: {query:query, _token:_token},
-                    success: function(data){
-                        $("#techList").faceIn();
-                        $("#techList").html(data)
-                    }
-                });
-                console.log(query);
-            }
-        });
-    });
-</script>
 
 </html>

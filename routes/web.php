@@ -82,17 +82,10 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
-
-    // Password RESET
-    
-    // Route::post('/passwords/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
-    // Route::get('/passwords/reset', 'Auth\AdminForgotPasswordController@sendLinkRequestForm')->name('admin.password.request');
-    // Route::post('/passwords/reset', 'Auth\AdminResetPasswordController@reset');
-    // Route::get('/passwords/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
 Route::resource('tech', 'TechController');
 
-//Route::resource('loanedTech', 'LoanedTechController');
+Route::resource('allTech', 'AllTechUserController');
 Route::resource('report', 'ReportsController');
 Route::resource('users', 'UserController');
 Route::resource('userTech', 'UserTechController');
