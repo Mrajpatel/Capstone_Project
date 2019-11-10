@@ -34,7 +34,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Barcode_Number</th>
-            <th scope="col">Tech_Type</th>
+            <th scope="col">Tech_Categories</th>
             <th scope="col">Loaned</th>
           </tr>
         </thead>

@@ -22,8 +22,8 @@
         <h1 style="color:red; font-weight:bold">{{ $tech->code }}_{{ $tech->tech_type}} </h1>
         <p class="lead" style="color:black"><b>Description:</b> {{ $tech->description}}</p>
         <p class="lead" style="color:black"><b>Barcode:</b> {{ $tech->code}}</p>
-        <p class="lead" style="color:black"><b>condition:</b> {{ $tech->condition}}</p>
-        <p class="lead" style="color:black"><b>Type:</b> {{ $tech->tech_type}}</p>
+        <p class="lead" style="color:black"><b>Condition:</b> {{ $tech->condition}}</p>
+        <p class="lead" style="color:black"><b>Categories:</b> {{ $tech->tech_type}}</p>
         <p><a class="btn btn-info" href="{{route('userTech.index')}}" role="button">Return</a></p>
     </div>
     @endif

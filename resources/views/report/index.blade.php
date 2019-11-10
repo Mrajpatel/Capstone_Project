@@ -10,7 +10,7 @@
             <tr>
                 <th scope="col">Tech ID</th>
                 <th scope="col">Barcode_Number</th>
-                <th scope="col">Tech_Type</th>
+                <th scope="col">Tech_Categories</th>
                 <th scope="col">Loaned</th>
                 <th scope="col">Loaned Student ID</th>
                 <th scope="col">Due-Time</th>

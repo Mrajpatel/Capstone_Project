@@ -11,9 +11,9 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="{{ route('home') }}">Dashboard</a>
-            <li><a href="{{route('allTech.index')}}">View All Tech</a></li>
-            <li><a href="{{route('userTech.index')}}">Available Tech</a></li>
-            <li><a href="{{route('editPersonalInformation.index')}}">Personal Information</a></li>
+            <li><a href="{{route('allTech.index')}}">Available Tech</a></li>
+            <li><a href="{{route('userTech.index')}}">Loan-Out</a></li>
+            <li><a href="{{route('editPersonalInformation.index')}}">User Information</a></li>
         </ul>
     </div>
 </nav>

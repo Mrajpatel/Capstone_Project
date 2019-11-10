@@ -73,7 +73,7 @@
                                         {{ csrf_field() }}
                                     </form>
                                 </li>
-                                <li><a href="{{route('editPersonalInformation.index')}}">Personal Information</a></li>
+                                <li><a href="{{route('editPersonalInformation.index')}}">User Information</a></li>
                             </ul>
                         </li>
                         @endif

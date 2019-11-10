@@ -11,7 +11,7 @@
     <p class="lead" style="color:black"><b>Email:</b> {{ $user->email}}</p>
     <p class="lead" style="color:black"><b>Fine ($):</b> {{ $user->fine}}</p>
     
-    <b><a style="color:white" href="/editPersonalInformation/{{ $user->id }}/edit" class="btn btn-info" role="button">Edit Information</a></b>
+    <b><a style="color:white" href="/editPersonalInformation/{{ $user->id }}/edit" class="btn btn-info" role="button">Edit</a></b>
 
 </div>
 

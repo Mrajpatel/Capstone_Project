@@ -19,8 +19,8 @@
         <h1 style="color:red; font-weight:bold">{{ $technologies->code }}_{{ $technologies->tech_type}} </h1>
         <p class="lead" style="color:black"><b>Description:</b> {{ $technologies->description}}</p>
         <p class="lead" style="color:black"><b>Barcode:</b> {{ $technologies->code}}</p>
-        <p class="lead" style="color:black"><b>condition:</b> {{ $technologies->condition}}</p>
-        <p class="lead" style="color:black"><b>Type:</b> {{ $technologies->tech_type}}</p>
+        <p class="lead" style="color:black"><b>Condition:</b> {{ $technologies->condition}}</p>
+        <p class="lead" style="color:black"><b>Categories:</b> {{ $technologies->tech_type}}</p>
         <p><a class="btn btn-success" href="/tech" role="button">View All Tech</a></p>
         
         <b><a style="color:white" href="/tech/{{ $technologies->id }}/edit" class="btn btn-info" role="button">Edit</a></b>

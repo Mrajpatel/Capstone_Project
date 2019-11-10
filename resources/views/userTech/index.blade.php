@@ -30,7 +30,7 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Barcode_Number</th>
-                        <th scope="col">Tech_Type</th>
+                        <th scope="col">Tech_Categories</th>
                         <th scope="col">Condition</th>
                         <th scope="col">Description</th>
                     </tr>

@@ -28,6 +28,7 @@
                         <th scope="col">Barcode_Number</th>
                         <th scope="col">Tech_Type</th>
                         <th scope="col">Condition</th>
+                        <th scope="col">Available</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,16 @@
                         <td scope="row">{{ $tech->code}}</a></td>
                         <td>{{ $tech->tech_type}}</td>
                         <td>{{ $tech->condition}}</td>
+                        <td>
+                            <?php
+                                $tech_loan = $tech->loaned;
+                                $flag = "False";
+                                if ($tech_loan == 1) {
+                                    $flag = "True";
+                                }
+                            ?>
+                            <b>{{ $flag }}</b>
+                        </td>
                     </tr>
 
                     @endforeach
