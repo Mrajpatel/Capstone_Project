@@ -10,7 +10,7 @@
 
         </div>
         <div class="panel-body">
-            <h1><b>All Tech Information</b></h1>
+            <h1><b>Tech Information</b></h1>
             <form method="post" action="/selectTechUser">
                 {{ csrf_field() }}
                 <div class="input-group">
@@ -28,7 +28,6 @@
                         <th scope="col">Barcode_Number</th>
                         <th scope="col">Tech_Type</th>
                         <th scope="col">Condition</th>
-                        <th scope="col">Description</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +38,6 @@
                         <td scope="row">{{ $tech->code}}</a></td>
                         <td>{{ $tech->tech_type}}</td>
                         <td>{{ $tech->condition}}</td>
-                        <td>{{ $tech->description}}</td>
                     </tr>
 
                     @endforeach

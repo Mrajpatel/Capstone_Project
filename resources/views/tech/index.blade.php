@@ -60,22 +60,6 @@
                 <span class="glyphicon glyphicon-pencil"></span> Edit
               </a>
             </td>
-            <td>
-              <a class="btn btn-sm btn-danger" href="#" onclick="
-                  var result = confirm('Are you sure you wish to delete this Tech Data?');
-                      if( result ){
-                              event.preventDefault();
-                              document.getElementById('delete-form').submit();
-                      }
-                          ">
-                <span class="glyphicon glyphicon-remove"></span>
-              </a>
-
-              <form id="delete-form" action="{{ route('tech.destroy',[$tech->id]) }}" method="POST" style="display: none;">
-                <input type="hidden" name="_method" value="delete">
-                {{ csrf_field() }}
-              </form>
-            </td>
           </tr>
 
           @endforeach

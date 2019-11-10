@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Loanouts;
 use App\Technologies;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException; 
 
 class TechController extends Controller
 {
@@ -50,20 +51,22 @@ class TechController extends Controller
      */
     public function store(Request $request)
     {
-        // Store the tech from create view to the database        
-        $tech = Technologies::create([
-            'code' => $request->input('barcode'),
-            'description' => $request->input('description'),
-            'condition' => $request->input('condition'),
-            'tech_type' => $request->input('techType')
-        ]);
-        if ($tech) {
-            return redirect()->route('tech.show', ['tech' => $tech->id])
-                ->with('success', 'Tech data created successfully');
+        try{
+            // Store the tech from create view to the database        
+            $tech = Technologies::create([
+                'code' => $request->input('barcode'),
+                'description' => $request->input('description'),
+                'condition' => $request->input('condition'),
+                'tech_type' => $request->input('techType')
+            ]);
+            if ($tech) {
+                return redirect()->route('tech.show', ['tech' => $tech->id])
+                    ->with('success', 'Tech data created successfully');
+            }
+        }catch (QueryException $e){
+            // Redirect
+            return back()->withInput()->with('errors', 'Error creating new tech');
         }
-
-        // Redirect
-        return back()->withInput()->with('errors', 'Error creating new tech');
     }
 
     /**
@@ -74,9 +77,14 @@ class TechController extends Controller
      */
     public function show(Technologies $tech)
     {
-        // find the tech in database and show the tech information in the show.blade view
-        $tech = Technologies::find($tech->id);
-        return view('tech.show', ['technologies' => $tech]);
+        try{
+            // find the tech in database and show the tech information in the show.blade view
+            $tech = Technologies::find($tech->id);
+            return view('tech.show', ['technologies' => $tech]);
+        }catch (QueryException $e){
+            // Redirect
+            return back()->withInput()->with('errors', 'Error finding tech');
+        }
     }
 
     /**
@@ -87,9 +95,14 @@ class TechController extends Controller
      */
     public function edit(Technologies $tech)
     {
-        // find the tech from the database and display information in edit.blade view
-        $tech = Technologies::find($tech->id);
-        return view('tech.edit', ['technologies' => $tech]);
+        try{
+            // find the tech from the database and display information in edit.blade view
+            $tech = Technologies::find($tech->id);
+            return view('tech.edit', ['technologies' => $tech]);
+        }catch(QueryException $e){
+            // Redirect
+            return back()->withInput()->with('errors', 'Error finding tech');
+        }
     }
 
     /**
@@ -101,36 +114,39 @@ class TechController extends Controller
      */
     public function update(Request $request, Technologies $tech)
     {
-        // save data into the database after update
-        $response = $request->input('techLoan');
-        $loaned = 0;
-        $techDelete = null;
-        if($response == "True"){
-            $loaned = 1;
-        }else{
+        try{
+            // save data into the database after update
+            $response = $request->input('techLoan');
             $loaned = 0;
-            $due_time = "";
-            $findTech = Loanouts::where('tech_id', $tech->id);
-            if ($findTech->delete()) {}
+            $techDelete = null;
+            if($response == "True"){
+                $loaned = 1;
+            }else{
+                $loaned = 0;
+                $due_time = "";
+                $findTech = Loanouts::where('tech_id', $tech->id);
+                if ($findTech->delete()) {}
+            }
+
+            // Find the tech from id and update the values
+            $techUpdate = Technologies::where('id', $tech->id)->update([
+                'code' => $request->input('barcode'),
+                'description' => $request->input('description'),
+                'condition' => $request->input('condition'),
+                'tech_type' => $request->input('techType'),
+                'loaned' => $loaned,
+                'due_time' => $due_time,
+            ]);
+
+            if ($techUpdate) {
+                return redirect()->route('tech.show', ['tech' => $tech->id])
+                    ->with('success', 'Tech data updated successfully');
+            }
+        }catch (QueryException $e){
+
+            // Redirect
+            return back()->withInput();
         }
-
-        // Find the tech from id and update the values
-        $techUpdate = Technologies::where('id', $tech->id)->update([
-            'code' => $request->input('barcode'),
-            'description' => $request->input('description'),
-            'condition' => $request->input('condition'),
-            'tech_type' => $request->input('techType'),
-            'loaned' => $loaned,
-            'due_time' => $due_time,
-        ]);
-
-        if ($techUpdate) {
-            return redirect()->route('tech.show', ['tech' => $tech->id])
-                ->with('success', 'Tech data updated successfully');
-        }
-
-        // Redirect
-        return back()->withInput();
     }
 
     /**
@@ -141,15 +157,18 @@ class TechController extends Controller
      */
     public function destroy(Technologies $tech)
     {
-        // Delete the tech from the database using tech id
-        $findTech = Technologies::find($tech->id);
-        if ($findTech->delete()) {
+        try{
+            // Delete the tech from the database using tech id
+            $findTech = Technologies::find($tech->id);
+            if ($findTech->delete()) {
 
-            // redirect with success message
-            return redirect()->route('tech.index')
-                ->with('success', 'Tech Data deleted successfully');
+                // redirect with success message
+                return redirect()->route('tech.index')
+                    ->with('success', 'Tech Data deleted successfully');
+            }
+        }catch(QueryException $e){
+            // redirect with error message
+            return back()->withInput()->with('error', 'Tech Data could not be deleted');
         }
-        // redirect with error message
-        return back()->withInput()->with('error', 'Tech Data could not be deleted');
     }
 }

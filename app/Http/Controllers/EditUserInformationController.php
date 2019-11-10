@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 use Auth;
 
 class EditUserInformationController extends Controller
@@ -75,18 +75,20 @@ class EditUserInformationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
+        try{
+            $user = Auth::user();
 
-        $userUpdate = User::where('id', $user->id)-> update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email')
-        ]);
+            $userUpdate = User::where('id', $user->id)-> update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email')
+            ]);
 
-        if($userUpdate){
-            return redirect()->route('editPersonalInformation.index', ['user' => $user])
-            ->with('success', 'User data updated successfully');
+            if($userUpdate){
+                return redirect()->route('editPersonalInformation.index', ['user' => $user])
+                ->with('success', 'User data updated successfully');
+            }
+        }catch (QueryException $e){
+            return back()->withInput()->with('error' , 'User data cannot be updated');
         }
-
-        return back()->withInput()->with('error' , 'User data cannot be updated');
     }
 }

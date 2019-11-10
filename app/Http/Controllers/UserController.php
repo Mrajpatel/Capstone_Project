@@ -6,6 +6,7 @@ use App\User;
 use App\Loanouts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
@@ -42,21 +43,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // Store the user from create view to the database     
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password'))
-            
-        ]);
-        if($user){
-            // Redirect with sucess message
-            return redirect()->route('users.show', ['singleUserData' => $user->id])
-            ->with('success', 'User data created successfully');
+        try{
+            // Store the user from create view to the database  
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password'))
+                
+            ]);
+            if($user){
+                // Redirect with sucess message
+                return redirect()->route('users.show', ['singleUserData' => $user->id])
+                ->with('success', 'User data created successfully');
+            }
+        }catch(QueryException  $e){
+            // Redirect with error message
+            return redirect()->route('users.index')
+                ->with('error', 'Error in User data. Try with unique data.');
         }
-    
-    // Redirect with error message
-    return back()->withInput()->with('errors', 'Error creating new User');
     }
 
     /**
@@ -67,9 +71,15 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        // find the user in database and show the user information in the show.blade view
-        $singleUser = User::find($user->id);
-        return view('users.show', ['singleUserData' => $singleUser]);
+        try{
+            // find the user in database and show the user information in the show.blade view
+            $singleUser = User::find($user->id);
+            return view('users.show', ['singleUserData' => $singleUser]);
+        }catch(QueryException $e){
+            // Redirect with error message
+            return redirect()->route('users.index')
+                ->with('error', 'Unable to find user.');
+        }
     }
 
     /**
@@ -80,9 +90,16 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        // find the user from the database and display information in edit.blade view
-        $singleUserData = User::find($user->id);
-        return view('users.edit', ['singleUserData' => $singleUserData]);
+        try{
+            // find the user from the database and display information in edit.blade view
+            $singleUserData = User::find($user->id);
+            return view('users.edit', ['singleUserData' => $singleUserData]);
+        }catch(QueryException $e){
+            // Redirect with error message
+            return redirect()->route('users.index')
+                ->with('error', 'Unable to find user.');
+        }
+        
     }
 
     /**
@@ -94,21 +111,23 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // save data into the database after update
-        $userUpdate = User::where('id', $user->id)-> update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'fine' => $request->input('fine'),
-        ]);
+        try{
+            // save data into the database after update
+            $userUpdate = User::where('id', $user->id)-> update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'fine' => $request->input('fine'),
+            ]);
 
-        if($userUpdate){
-            // Redirect with success message
-            return redirect()->route('users.show', ['user' => $user->id])
-            ->with('success', 'User data updated successfully');
+            if($userUpdate){
+                // Redirect with success message
+                return redirect()->route('users.show', ['user' => $user->id])
+                ->with('success', 'User data updated successfully');
+            }
+        }catch(QueryException $e){
+            // Redirect with error message
+            return back()->withInput()->with('error' , 'User data cannot be updated');
         }
-
-        // Redirect with error message
-        return back()->withInput()->with('error' , 'User data cannot be updated');
     }
 
     /**
@@ -119,16 +138,18 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        // delete user account
-        $findUser = User::find( $user->id);
-		if($findUser->delete()){
-            
-            //redirect with success message
-            return redirect()->route('users.index')
-            ->with('success' , 'User deleted successfully');
+        try{
+            // delete user account
+            $findUser = User::find( $user->id);
+            if($findUser->delete()){
+                
+                //redirect with success message
+                return redirect()->route('users.index')
+                ->with('success' , 'User deleted successfully');
+            }
+        } catch(QueryException $e){
+            // redirect with error message
+            return back()->withInput()->with('error' , 'User could not be deleted');
         }
-
-        // redirect with error message
-        return back()->withInput()->with('error' , 'User could not be deleted');
     }
 }

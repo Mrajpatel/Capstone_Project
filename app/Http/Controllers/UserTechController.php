@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Technologies;
+use Illuminate\Database\QueryException;
 
 class UserTechController extends Controller
 {
@@ -22,8 +23,12 @@ class UserTechController extends Controller
 
     public function edit(Technologies $tech)
     {
-        // Return the show view page
-        $tech = Technologies::find($tech->id);
-        return view('userTech.show', ['technologies' => $tech]);
+        try{
+            // Return the show view page
+            $tech = Technologies::find($tech->id);
+            return view('userTech.show', ['technologies' => $tech]);
+        }catch(QueryException $e){
+            return back()->withInput()->with('error' , 'Tech could not be found');
+        }
     }
 }
