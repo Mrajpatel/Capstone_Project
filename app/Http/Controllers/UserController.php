@@ -48,7 +48,7 @@ class UserController extends Controller
             $user = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password'))
+                'password' => $request->input('password')
                 
             ]);
             if($user){
@@ -117,6 +117,7 @@ class UserController extends Controller
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'fine' => $request->input('fine'),
+                'password' => $request->input('password'),
             ]);
 
             if($userUpdate){

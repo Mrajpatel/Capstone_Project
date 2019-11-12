@@ -37,13 +37,26 @@
             <div class="form-group">
                 <label for="tech_condition"><b>User Email</b><span class="required">*</span></label>
                 <input 
-                    placeholder="Enter User Email"
+                    placeholder="Enter New Email"
                     id="user_email"
                     required
                     name="email"
                     spellcheck="false"
                     class="form-control"
                     value="{{ $singleUserData-> email}}"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="tech_condition"><b>User Password</b><span class="required">*</span></label>
+                <input 
+                    placeholder="Enter New Password"
+                    id="user_password"
+                    required
+                    name="password"
+                    spellcheck="false"
+                    class="form-control"
+                    value="{{ $singleUserData-> password}}"
                 />
             </div>
 
