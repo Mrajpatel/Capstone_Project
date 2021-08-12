@@ -93,7 +93,7 @@
                     @component('component.who')
                     @endcomponent
                     <div>
-                        <p style="color: lightgray;">Tech Manager is an loan-out application designed and managed by Raj Patel-000744572</p>
+                        <p style="color: lightgray;">Tech Manager is an loan-out application designed and managed by Raj Patel</p>
                         <p style="color: lightgray;">Tech Manager manages users and loan out tech for the management</p>
                     </div>                    
                 </div>
